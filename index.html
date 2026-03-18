@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Key System</title>
+</head>
+<body id="mainBody">
+
+<h2>Watch both videos</h2>
+
+<button onclick="video1()">Video 1</button>
+<button onclick="video2()">Video 2</button>
+
+<br><br>
+
+<button id="unlock" onclick="getKey()" style="display:none;">
+  Get Key
+</button>
+
+<br><br>
+
+<input type="text" id="keyBox" placeholder="Main key">
+<button onclick="checkKey()">Verify Key</button>
+
+<p id="result1"></p>
+
+<hr>
+
+<h3>CC Key</h3>
+
+<input type="password" id="ccBox" placeholder="CC key">
+<button onclick="checkCC()">Verify CC</button>
+
+<p id="result2"></p>
+
+<script>
+let v1 = false;
+let v2 = false;
+let mainOk = false;
+let ccOk = false;
+
+// Keys
+const key = "free_89d7839hdjd98577238r8hy8t8fhefdgf4y8377857835757";
+const cc = "wgte6337eq7gwctwgtwf6wt6w565";
+const finalKey = "free__846497467y37r4yr37tre78wure7frye74ty744ry7rtr6r7tr7ft46t4r67646";
+
+// Video buttons
+function video1() {
+  window.open("https://youtu.be/88O74o998V4?si=IY4O_DkhyBkGSp3b", "_blank");
+  v1 = true;
+  check();
+}
+
+function video2() {
+  window.open("https://youtube.com/shorts/Onyk8EdEjKk?si=4aBSaWcjk8d6cuBG", "_blank");
+  v2 = true;
+  check();
+}
+
+// Show unlock button
+function check() {
+  if (v1 && v2) {
+    document.getElementById("unlock").style.display = "inline";
+  }
+}
+
+// Put main key
+function getKey() {
+  document.getElementById("keyBox").value = key;
+}
+
+// Verify main key
+function checkKey() {
+  let val = document.getElementById("keyBox").value;
+
+  if (val === key) {
+    document.getElementById("result1").innerText = "✅ Correct key";
+    mainOk = true;
+  } else {
+    document.getElementById("result1").innerText = "❌ Wrong key";
+  }
+
+  checkFinal();
+}
+
+// Verify CC key
+function checkCC() {
+  let val = document.getElementById("ccBox").value;
+
+  if (val === cc) {
+    document.getElementById("result2").innerText = "✅ Correct CC";
+    ccOk = true;
+  } else {
+    document.getElementById("result2").innerText = "❌ Wrong CC";
+  }
+
+  checkFinal();
+}
+
+// FINAL SCREEN
+function checkFinal() {
+  if (mainOk && ccOk) {
+    document.body.innerHTML = `
+      <div style="background:black; color:white; height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column;">
+        <h1>FINAL KEY</h1>
+        <p>${finalKey}</p>
+      </div>
+    `;
+  }
+}
+</script>
+
+</body>
+</html>
